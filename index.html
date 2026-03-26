@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>JustBakes by Gayathri — Menu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* ── Confirmed palette ── */
+      --linen:      #faf4ec;
+      --biscuit:    #e8c9a0;
+      --terra:      #b35c3a;
+      --sage:       #7a9e7e;
+      --espresso:   #3b2a1a;
+      --text-mid:   #7a5c3e;
+      --text-light: #a88060;
+      --card-bg:    #f2e8d5;
+      --border:     #dfc99a;
+    }
+
+    /* ── Base: mobile-first ── */
+    html { font-size: 16px; }
+
+    body {
+      background: var(--linen);
+      color: var(--espresso);
+      font-family: 'Lato', sans-serif;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ══════════════ HEADER ══════════════ */
+    header {
+      background: var(--biscuit);
+      text-align: center;
+      padding: 2.8rem 1.2rem 2.2rem;
+      border-bottom: 2px solid var(--terra);
+      position: relative;
+    }
+
+    header::before, header::after {
+      content: "✦";
+      position: absolute;
+      font-size: 0.75rem;
+      color: var(--terra);
+      opacity: 0.4;
+    }
+    header::before { top: 1rem; left: 1.2rem; }
+    header::after  { bottom: 1rem; right: 1.2rem; }
+
+    .brand-name {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 2.4rem;          /* mobile: comfortable large */
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      color: var(--espresso);
+      line-height: 1.1;
+    }
+
+    .brand-name em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--terra);
+    }
+
+    .tagline {
+      margin-top: 0.6rem;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--text-mid);
+      letter-spacing: 0.03em;
+    }
+
+    .header-divider {
+      margin: 1.2rem auto 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+    }
+    .header-divider span {
+      display: block;
+      width: 40px;
+      height: 1.5px;
+      background: var(--terra);
+      opacity: 0.45;
+      border-radius: 2px;
+    }
+
+    /* ══════════════ MAIN ══════════════ */
+    main {
+      padding: 0 1rem 5rem;       /* generous bottom padding for thumb reach */
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* ══════════════ SECTION HEADING ══════════════ */
+    .section-heading {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin: 2.4rem 0 1rem;
+    }
+    .section-heading .line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    .section-heading h2 {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-mid);
+      white-space: nowrap;
+    }
+
+    /* ══════════════ CARDS ══════════════ */
+    .cards { display: grid; gap: 0.75rem; }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.1rem 1.1rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.9rem;
+      /* Mobile tap feedback instead of hover */
+      -webkit-tap-highlight-color: transparent;
+      cursor: pointer;
+      transition: background 0.15s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .card:active {
+      background: #e5d4b0;
+    }
+
+    /* desktop hover */
+    @media (hover: hover) {
+      .card:hover {
+        background: #ead9bb;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 18px rgba(80,40,10,0.1);
+        transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      }
+    }
+
+    .card-icon {
+      font-size: 1.6rem;          /* bigger on mobile = easier to scan */
+      flex-shrink: 0;
+      margin-top: 0.05rem;
+    }
+
+    .card-body { flex: 1; min-width: 0; }
+
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--espresso);
+      line-height: 1.25;
+    }
+
+    .card-desc {
+      margin-top: 0.25rem;
+      font-size: 0.82rem;
+      color: var(--text-mid);
+      font-weight: 300;
+      line-height: 1.5;
+    }
+
+    /* batch / pack size badges */
+    .badge-row {
+      margin-top: 0.55rem;
+      display: flex;
+      gap: 0.35rem;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      font-size: 0.67rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--espresso);
+      background: #d6e8d8;
+      border: 1px solid var(--sage);
+      padding: 0.22rem 0.6rem;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    /* ══════════════ ORDER BOX ══════════════ */
+    .order-box {
+      margin-top: 2.6rem;
+      background: var(--biscuit);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.8rem 1.2rem;
+      text-align: center;
+    }
+
+    .order-box h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--espresso);
+    }
+
+    .order-box p {
+      margin-top: 0.45rem;
+      font-size: 0.83rem;
+      color: var(--text-mid);
+      line-height: 1.65;
+      font-weight: 300;
+    }
+
+    /* WhatsApp CTA — big and thumb-friendly */
+    .order-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin: 1.2rem auto 0;
+      background: var(--terra);
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 1rem 2rem;         /* tall = easy tap target */
+      border-radius: 50px;
+      min-height: 52px;           /* WCAG touch target */
+      max-width: 280px;
+      -webkit-tap-highlight-color: transparent;
+      transition: background 0.2s;
+    }
+
+    .order-btn:active { background: #9a4c2e; }
+
+    @media (hover: hover) {
+      .order-btn:hover {
+        background: #9a4c2e;
+        transform: translateY(-1px);
+        transition: background 0.2s, transform 0.2s;
+      }
+    }
+
+    .order-btn svg {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+
+    /* ══════════════ FOOTER ══════════════ */
+    footer {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 1.4rem 1rem 1.8rem;
+      text-align: center;
+      font-size: 0.7rem;
+      color: var(--text-light);
+      letter-spacing: 0.04em;
+      border-top: 1px solid var(--border);
+    }
+    footer em { font-style: italic; color: var(--text-mid); }
+
+    /* ══════════════ DESKTOP BUMP ══════════════ */
+    @media (min-width: 600px) {
+      .brand-name  { font-size: 3rem; }
+      main         { padding: 0 1.5rem 5rem; }
+      .order-btn   { max-width: 300px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand-name">JustBakes <em>by Gayathri</em></div>
+    <p class="tagline">"Every cup, a little celebration."</p>
+    <div class="header-divider">
+      <span></span>
+      <span style="font-size:0.9rem;">🌿</span>
+      <span></span>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ── Cake Cups ── -->
+    <div class="section-heading">
+      <div class="line"></div>
+      <h2>🍰 Cake Cups — Single Serve</h2>
+      <div class="line"></div>
+    </div>
+
+    <div class="cards">
+
+      <div class="card">
+        <span class="card-icon">🍓</span>
+        <div class="card-body">
+          <div class="card-title">Strawberry Shortcake Cup</div>
+          <div class="card-desc">Vanilla cake with fresh strawberries &amp; whipped cream</div>
+          <div class="badge-row">
+            <span class="badge">Batch of 3</span>
+            <span class="badge">Batch of 6</span>
+            <span class="badge">Batch of 12</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="card-icon">🍫</span>
+        <div class="card-body">
+          <div class="card-title">Chocolate Cake Cup</div>
+          <div class="card-desc">Rich chocolate sponge with creamy chocolate frosting</div>
+          <div class="badge-row">
+            <span class="badge">Batch of 3</span>
+            <span class="badge">Batch of 6</span>
+            <span class="badge">Batch of 12</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="card-icon">🫐</span>
+        <div class="card-body">
+          <div class="card-title">Blueberry Cake Cup</div>
+          <div class="card-desc">Moist vanilla cake with juicy blueberries &amp; light cream</div>
+          <div class="badge-row">
+            <span class="badge">Batch of 3</span>
+            <span class="badge">Batch of 6</span>
+            <span class="badge">Batch of 12</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="card-icon">🍑</span>
+        <div class="card-body">
+          <div class="card-title">Mixed Fruit Cake Cup</div>
+          <div class="card-desc">Vanilla cake topped with seasonal fruit medley &amp; cream</div>
+          <div class="badge-row">
+            <span class="badge">Batch of 3</span>
+            <span class="badge">Batch of 6</span>
+            <span class="badge">Batch of 12</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── Brownie Packs ── -->
+    <div class="section-heading">
+      <div class="line"></div>
+      <h2>🍫 Brownie Packs</h2>
+      <div class="line"></div>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <span class="card-icon">🟫</span>
+        <div class="card-body">
+          <div class="card-title">Classic Brownie Pack</div>
+          <div class="card-desc">Fudgy, rich chocolate brownies — made fresh to order</div>
+          <div class="badge-row">
+            <span class="badge">Pack of 6</span>
+            <span class="badge">Pack of 12</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Order CTA ── -->
+    <div class="order-box">
+      <h3>Ready to order? 🧡</h3>
+      <p>Everything is baked fresh to order.<br/>Tap below — we'll open WhatsApp with your order ready to fill in.</p>
+
+      <!--
+        WhatsApp click-to-chat link.
+        Format: https://wa.me/[countrycode+number]?text=[URL encoded message]
+        ⚠️  Replace 91XXXXXXXXXX with Gayathri's actual number before going live.
+      -->
+      <a class="order-btn"
+         href="https://wa.me/91XXXXXXXXXX?text=Hi%20Gayathri!%20I%27d%20like%20to%20place%20an%20order%20from%20JustBakes%20%F0%9F%8D%B0%0A%0AMy%20Order%3A%0A-%20%0A%0APlease%20let%20me%20know%20availability%20and%20total.%20Thank%20you!"
+         target="_blank" rel="noopener noreferrer">
+        <!-- WhatsApp icon -->
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Order on WhatsApp
+      </a>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>JustBakes <em>by Gayathri</em> &nbsp;·&nbsp; Home Bakery &nbsp;·&nbsp; Made with love 🤍</p>
+  </footer>
+
+</body>
+</html>
