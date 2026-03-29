@@ -4,8 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
   <title>JustBakes by Gayathri</title>
-  <meta name="description" content="Home-baked cake cups and brownies, made fresh to order. JustBakes by Gayathri." />
+  <meta name="description" content="Home-baked dessert cups, brownies & cupcakes — made fresh to order in Singapore." />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <script>
+  /* ═══ PRICING — Edit values here before going live (all SGD) ═══ */
+  const PRICING = {
+    dessertCups: {
+      note: "Available in 100 ml & 350 ml · All flavours same price",
+      small:  { label: "100 ml", sublabel: "Small Cup", options: [{ qty: 3, price: 8 }, { qty: 6, price: 15 }, { qty: 12, price: 30 }] },
+      large:  { label: "350 ml", sublabel: "Large Cup", options: [{ qty: 3, price: 13 }, { qty: 6, price: 23 }, { qty: 12, price: 44 }] }
+    },
+    browniePacks: { options: [{ qty: 6, price: 16 }] },
+    cupcakes:     { options: [{ qty: 6, price: 15 }, { qty: 12, price: 25 }, { qty: 24, price: 50 }] }
+  };
+  </script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -22,7 +34,6 @@
     }
 
     html { font-size: 16px; }
-
     body {
       background: var(--linen);
       color: var(--espresso);
@@ -40,285 +51,229 @@
       padding: 2.8rem 1.5rem 2.2rem;
       border-bottom: 1px solid var(--border);
     }
-
     .logo-badge {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 64px;
-      height: 64px;
-      background: var(--biscuit);
-      border: 2.5px solid var(--terra);
-      border-radius: 50%;
-      font-size: 1.8rem;
-      margin-bottom: 1.1rem;
-      line-height: 1;
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 64px; height: 64px;
+      background: var(--biscuit); border: 2.5px solid var(--terra);
+      border-radius: 50%; font-size: 1.8rem; margin-bottom: 1.1rem;
     }
-
     .brand-name {
       font-family: 'Playfair Display', serif;
-      font-size: 2.6rem;
-      font-weight: 700;
-      color: var(--espresso);
-      line-height: 1.05;
-      letter-spacing: -0.01em;
+      font-size: 2.6rem; font-weight: 700;
+      color: var(--espresso); line-height: 1.05; letter-spacing: -0.01em;
     }
-
     .brand-by {
-      display: block;
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
-      font-weight: 400;
-      font-style: italic;
-      color: var(--terra);
-      margin-top: 0.25rem;
-      letter-spacing: 0.01em;
+      display: block; font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; font-weight: 400; font-style: italic;
+      color: var(--terra); margin-top: 0.25rem;
     }
-
     .tagline {
-      margin-top: 0.9rem;
-      font-family: 'Lato', sans-serif;
-      font-weight: 300;
-      font-size: 0.65rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--text-light);
+      margin-top: 0.9rem; font-weight: 300;
+      font-size: 0.65rem; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--text-light);
     }
 
     /* ══════════════════════════════════════
        MAIN WRAPPER
     ══════════════════════════════════════ */
-    main {
-      max-width: 480px;
-      margin: 0 auto;
-      padding: 0 1.2rem 5rem;
-    }
+    main { max-width: 480px; margin: 0 auto; padding: 0 1.2rem 3rem; }
 
     /* ══════════════════════════════════════
-       SECTION HEADING — two-tier
+       SECTION HEADING
     ══════════════════════════════════════ */
-    .section-header {
-      margin: 2.8rem 0 0.2rem;
-    }
-
+    .section-header { margin: 2.6rem 0 0.6rem; }
     .section-label {
-      font-family: 'Lato', sans-serif;
-      font-weight: 700;
-      font-size: 0.6rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--sage);
-      margin-bottom: 0.25rem;
+      font-weight: 700; font-size: 0.6rem;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--sage); margin-bottom: 0.25rem;
     }
-
     .section-title {
       font-family: 'Playfair Display', serif;
-      font-size: 1.6rem;
-      font-weight: 600;
-      color: var(--espresso);
-      line-height: 1.15;
+      font-size: 1.5rem; font-weight: 600; line-height: 1.15;
+    }
+    .section-note {
+      font-size: 0.72rem; font-weight: 300;
+      color: var(--text-mid); margin-top: 0.2rem;
     }
 
     /* ══════════════════════════════════════
-       MENU LIST — editorial row layout
+       MENU ROWS — editorial with thumbnails
     ══════════════════════════════════════ */
     .menu-list {
-      margin-top: 1rem;
+      margin-top: 0.8rem;
       border-top: 1px solid var(--border);
     }
-
     .menu-row {
-      display: flex;
-      align-items: center;
-      gap: 0.85rem;
-      padding: 0.95rem 0;
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 0.85rem 0;
       border-bottom: 1px solid var(--border);
     }
-
-    .menu-icon {
-      font-size: 1.4rem;
-      flex-shrink: 0;
-      width: 2rem;
-      text-align: center;
+    .menu-thumb {
+      width: 56px; height: 56px; border-radius: 10px;
+      object-fit: cover; flex-shrink: 0;
+      border: 1px solid var(--border);
     }
-
-    .menu-body {
-      flex: 1;
-      min-width: 0;
-    }
-
+    .menu-body { flex: 1; min-width: 0; }
     .menu-name {
       font-family: 'Playfair Display', serif;
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--espresso);
-      line-height: 1.2;
+      font-size: 0.92rem; font-weight: 600; line-height: 1.2;
     }
-
     .menu-desc {
-      margin-top: 0.18rem;
-      font-family: 'Lato', sans-serif;
-      font-size: 0.78rem;
-      font-weight: 300;
-      color: var(--text-mid);
-      line-height: 1.45;
+      margin-top: 0.12rem; font-size: 0.72rem; font-weight: 300;
+      color: var(--text-mid); line-height: 1.4;
     }
 
-    .size-pills {
-      display: flex;
-      flex-direction: column;
-      gap: 0.28rem;
-      align-items: flex-end;
-      flex-shrink: 0;
+    /* CSS tricks for photos we're reusing */
+    .img-chocolate { filter: sepia(0.5) saturate(1.8) hue-rotate(-15deg) brightness(0.72); }
+    .img-mirrored  { transform: scaleX(-1); }
+
+    /* ══════════════════════════════════════
+       PRICING BLOCKS — clean LTR rows
+    ══════════════════════════════════════ */
+    .pricing-block {
+      margin-top: 0.8rem;
+      background: var(--card-bg); border-radius: 12px;
+      border: 1px solid var(--border); overflow: hidden;
+    }
+    .pricing-heading {
+      padding: 0.6rem 0.85rem;
+      background: var(--espresso); color: var(--linen);
+      font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+    }
+    .pricing-heading span {
+      font-weight: 300; opacity: 0.7;
+      margin-left: 0.3rem; letter-spacing: 0.04em;
+      text-transform: none;
+    }
+    .pricing-row {
+      display: flex; align-items: center;
+      padding: 0.65rem 0.85rem;
+    }
+    .pricing-row + .pricing-row { border-top: 1px solid var(--border); }
+    .pr-qty {
+      font-size: 0.92rem; font-weight: 300;
+      color: var(--text-mid); flex: 1;
+    }
+    .pr-price {
+      font-size: 1.2rem; font-weight: 700;
+      color: var(--terra);
     }
 
-    .pill {
-      font-family: 'Lato', sans-serif;
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      color: var(--espresso);
-      background: rgba(122, 158, 126, 0.15);
-      border: 1px solid var(--sage);
-      border-radius: 20px;
-      padding: 0.18rem 0.52rem;
-      white-space: nowrap;
+    /* ══════════════════════════════════════
+       PRODUCT FEATURE CARD (brownie, cupcake)
+    ══════════════════════════════════════ */
+    .product-feature {
+      margin-top: 0.8rem;
+      background: var(--card-bg); border-radius: 14px;
+      border: 1px solid var(--border); overflow: hidden;
+    }
+    .feature-img {
+      width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block;
+    }
+    .feature-body { padding: 0.85rem 1rem 1rem; }
+    .feature-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem; font-weight: 600;
+    }
+    .feature-desc {
+      font-size: 0.75rem; font-weight: 300;
+      color: var(--text-mid); margin-top: 0.15rem; line-height: 1.45;
+    }
+    .feature-prices {
+      display: flex; gap: 0.7rem; margin-top: 0.55rem; flex-wrap: wrap;
+    }
+    .fp-item { display: flex; align-items: baseline; gap: 0.25rem; }
+    .fp-qty { font-size: 0.85rem; font-weight: 300; color: var(--text-mid); }
+    .fp-val { font-size: 1.1rem; font-weight: 700; color: var(--terra); }
+    .customisation-tag {
+      display: inline-block; margin-top: 0.4rem;
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--terra);
+    }
+
+    /* ══════════════════════════════════════
+       CUSTOM ORDERS CTA
+    ══════════════════════════════════════ */
+    .custom-cta {
+      margin-top: 2.8rem; text-align: center;
+      position: relative; padding: 2rem 1.4rem 1.6rem;
+    }
+    .custom-cta::before {
+      content: ''; position: absolute; inset: 0;
+      border: 2px dashed var(--biscuit); border-radius: 16px;
+    }
+    .custom-cta .custom-img {
+      width: 80px; height: 80px;
+      object-fit: contain; margin: 0 auto 0.6rem; display: block;
+    }
+    .custom-cta h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem; font-weight: 600;
+    }
+    .custom-cta p {
+      font-size: 0.78rem; font-weight: 300;
+      color: var(--text-mid); margin: 0.3rem 0 1rem; line-height: 1.5;
     }
 
     /* ══════════════════════════════════════
        ABOUT STRIP
     ══════════════════════════════════════ */
     .about-strip {
-      margin-top: 2.8rem;
-      background: var(--card-bg);
-      border-radius: 14px;
-      padding: 1.6rem 1.4rem;
-      text-align: center;
-      border: 1px solid var(--border);
+      margin-top: 2.8rem; background: var(--card-bg);
+      border-radius: 14px; padding: 1.6rem 1.4rem;
+      text-align: center; border: 1px solid var(--border);
     }
-
     .about-strip h2 {
       font-family: 'Playfair Display', serif;
-      font-size: 1.15rem;
-      font-weight: 600;
-      color: var(--espresso);
-      margin-bottom: 0.5rem;
+      font-size: 1.15rem; font-weight: 600; margin-bottom: 0.5rem;
     }
-
     .about-strip p {
-      font-family: 'Lato', sans-serif;
-      font-size: 0.82rem;
-      font-weight: 300;
-      color: var(--text-mid);
-      line-height: 1.65;
+      font-size: 0.82rem; font-weight: 300;
+      color: var(--text-mid); line-height: 1.65;
     }
 
     /* ══════════════════════════════════════
        ORDER / CONTACT
     ══════════════════════════════════════ */
-    .order-section {
-      margin-top: 2.8rem;
-      text-align: center;
-    }
-
+    .order-section { margin-top: 2.8rem; text-align: center; }
     .order-section .section-label { margin-bottom: 0.3rem; }
-
     .order-section h2 {
       font-family: 'Playfair Display', serif;
-      font-size: 1.6rem;
-      font-weight: 600;
-      color: var(--espresso);
-      margin-bottom: 0.5rem;
+      font-size: 1.6rem; font-weight: 600; margin-bottom: 0.5rem;
     }
-
     .order-note {
-      font-family: 'Lato', sans-serif;
-      font-size: 0.78rem;
-      font-weight: 300;
-      color: var(--text-mid);
-      letter-spacing: 0.03em;
-      margin-bottom: 1.4rem;
+      font-size: 0.78rem; font-weight: 300;
+      color: var(--text-mid); letter-spacing: 0.03em; margin-bottom: 1.4rem;
     }
-
-    .btn-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      align-items: center;
-    }
-
+    .btn-group { display: flex; flex-direction: column; gap: 0.75rem; align-items: center; }
     .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      width: 100%;
-      max-width: 280px;
-      min-height: 52px;
-      padding: 0.85rem 1.5rem;
-      border-radius: 50px;
-      font-family: 'Lato', sans-serif;
-      font-size: 0.82rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      text-decoration: none;
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 0.5rem; width: 100%; max-width: 280px; min-height: 52px;
+      padding: 0.85rem 1.5rem; border-radius: 50px;
+      font-family: 'Lato', sans-serif; font-size: 0.82rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
       -webkit-tap-highlight-color: transparent;
       transition: opacity 0.15s ease, transform 0.15s ease;
     }
-
     .btn:active { opacity: 0.85; transform: scale(0.98); }
-
-    .btn-primary {
-      background: var(--terra);
-      color: #fff;
-      border: 2px solid var(--terra);
-    }
-
-    @media (hover: hover) {
+    .btn-primary { background: var(--terra); color: #fff; border: 2px solid var(--terra); }
+    .btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+    @media (hover:hover) {
       .btn-primary:hover { background: #9a4c2e; border-color: #9a4c2e; }
     }
-
-    .btn-secondary {
-      background: transparent;
-      color: var(--espresso);
-      border: 2px solid var(--espresso);
-    }
-
-    @media (hover: hover) {
-      .btn-secondary:hover { background: var(--espresso); color: var(--linen); }
-    }
-
-    .btn svg { width: 18px; height: 18px; flex-shrink: 0; }
 
     /* ══════════════════════════════════════
        FOOTER
     ══════════════════════════════════════ */
     footer {
-      max-width: 480px;
-      margin: 3rem auto 0;
-      padding: 1.2rem 1.2rem 2rem;
-      text-align: center;
+      max-width: 480px; margin: 3rem auto 0;
+      padding: 1.2rem 1.2rem 2rem; text-align: center;
       border-top: 1px solid var(--border);
-      font-family: 'Lato', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 300;
-      color: var(--text-light);
-      letter-spacing: 0.04em;
+      font-size: 0.7rem; font-weight: 300;
+      color: var(--text-light); letter-spacing: 0.04em;
     }
-
     footer em { font-style: italic; color: var(--text-mid); }
-
-    /* ══════════════════════════════════════
-       DESKTOP (≥600px)
-    ══════════════════════════════════════ */
-    @media (min-width: 600px) {
-      .brand-name { font-size: 3.2rem; }
-      .logo-badge { width: 72px; height: 72px; font-size: 2rem; }
-      main        { padding: 0 1.5rem 5rem; }
-      .btn-group  { flex-direction: row; justify-content: center; }
-      .btn        { width: auto; min-width: 200px; }
-    }
   </style>
 </head>
 <body>
@@ -334,114 +289,107 @@
 
   <main>
 
-    <!-- Cake Cups -->
+    <!-- ═══ DESSERT CUPS ═══ -->
     <div class="section-header">
       <p class="section-label">Single Serve</p>
-      <h2 class="section-title">Cake Cups</h2>
+      <h2 class="section-title">Dessert Cups</h2>
+      <p class="section-note">Available in 100 ml &amp; 350 ml · All flavours same price</p>
     </div>
 
     <div class="menu-list">
       <div class="menu-row">
-        <span class="menu-icon">🍓</span>
+        <img class="menu-thumb" src="assets/dessert-cup-strawberry.jpg" alt="Strawberry Shortcake dessert cup" />
         <div class="menu-body">
-          <div class="menu-name">Strawberry Shortcake Cup</div>
-          <div class="menu-desc">Vanilla cake with fresh strawberries &amp; whipped cream</div>
-        </div>
-        <div class="size-pills">
-          <span class="pill">3</span>
-          <span class="pill">6</span>
-          <span class="pill">12</span>
+          <div class="menu-name">Strawberry Shortcake</div>
+          <div class="menu-desc">Vanilla cake, fresh strawberries &amp; whipped cream</div>
         </div>
       </div>
-
       <div class="menu-row">
-        <span class="menu-icon">🍫</span>
+        <img class="menu-thumb" src="assets/dessert-cup-blueberry.jpg" alt="Blueberry dessert cup" />
         <div class="menu-body">
-          <div class="menu-name">Chocolate Cake Cup</div>
-          <div class="menu-desc">Rich chocolate sponge with creamy chocolate frosting</div>
-        </div>
-        <div class="size-pills">
-          <span class="pill">3</span>
-          <span class="pill">6</span>
-          <span class="pill">12</span>
+          <div class="menu-name">Blueberry</div>
+          <div class="menu-desc">Vanilla cake, juicy blueberries &amp; light cream</div>
         </div>
       </div>
-
       <div class="menu-row">
-        <span class="menu-icon">🫐</span>
+        <img class="menu-thumb img-mirrored" src="assets/dessert-cup-strawberry.jpg" alt="Mixed Fruit dessert cup" />
         <div class="menu-body">
-          <div class="menu-name">Blueberry Cake Cup</div>
-          <div class="menu-desc">Moist vanilla cake with juicy blueberries &amp; light cream</div>
-        </div>
-        <div class="size-pills">
-          <span class="pill">3</span>
-          <span class="pill">6</span>
-          <span class="pill">12</span>
+          <div class="menu-name">Mixed Fruit</div>
+          <div class="menu-desc">Vanilla cake, seasonal fruit medley &amp; cream</div>
         </div>
       </div>
-
       <div class="menu-row">
-        <span class="menu-icon">🍑</span>
+        <img class="menu-thumb img-chocolate" src="assets/dessert-cup-strawberry.jpg" alt="Chocolate dessert cup" />
         <div class="menu-body">
-          <div class="menu-name">Mixed Fruit Cake Cup</div>
-          <div class="menu-desc">Vanilla cake topped with seasonal fruit medley &amp; cream</div>
-        </div>
-        <div class="size-pills">
-          <span class="pill">3</span>
-          <span class="pill">6</span>
-          <span class="pill">12</span>
+          <div class="menu-name">Chocolate</div>
+          <div class="menu-desc">Rich chocolate sponge &amp; creamy frosting</div>
         </div>
       </div>
     </div>
 
-    <!-- Brownie Packs -->
+    <div id="cups-pricing-small"></div>
+    <div id="cups-pricing-large"></div>
+
+    <!-- ═══ BROWNIE PACKS ═══ -->
     <div class="section-header">
-      <p class="section-label">À la carte</p>
+      <p class="section-label">Baked Fresh</p>
       <h2 class="section-title">Brownie Packs</h2>
     </div>
 
-    <div class="menu-list">
-      <div class="menu-row">
-        <span class="menu-icon">🍫</span>
-        <div class="menu-body">
-          <div class="menu-name">Classic Brownie Pack</div>
-          <div class="menu-desc">Fudgy, rich chocolate brownies — made fresh to order</div>
-        </div>
-        <div class="size-pills">
-          <span class="pill">6</span>
-          <span class="pill">12</span>
-        </div>
+    <div class="product-feature">
+      <img class="feature-img" src="assets/brownie-classic.jpg" alt="Classic Brownie" />
+      <div class="feature-body">
+        <div class="feature-name">Classic Brownie</div>
+        <div class="feature-desc">Fudgy, rich chocolate brownies — baked fresh to order</div>
+        <div class="feature-prices" id="brownie-prices"></div>
       </div>
     </div>
 
-    <!-- About -->
+    <!-- ═══ CUPCAKES ═══ -->
+    <div class="section-header">
+      <p class="section-label">Party Favourite</p>
+      <h2 class="section-title">Cupcakes</h2>
+    </div>
+
+    <div class="product-feature">
+      <div class="feature-img" style="background:var(--biscuit);display:flex;align-items:center;justify-content:center;font-size:3.5rem;aspect-ratio:16/9;">🧁</div>
+      <div class="feature-body">
+        <div class="feature-name">Vanilla Cupcakes</div>
+        <div class="feature-desc">Light vanilla sponge with buttercream frosting &amp; sprinkles</div>
+        <div class="feature-prices" id="cupcake-prices"></div>
+      </div>
+    </div>
+
+    <!-- ═══ CUSTOM ORDERS ═══ -->
+    <div class="custom-cta">
+      <img class="custom-img" src="assets/cupcake-custom.png" alt="Custom cupcake design" />
+      <h2>Planning a party?</h2>
+      <p>Custom designs &amp; bulk orders — we'd love to bake for your celebration.</p>
+      <a class="btn btn-primary"
+         href="https://wa.me/6587416283?text=Hi%20Gayathri!%20I%27m%20interested%20in%20a%20custom%20%2F%20bulk%20order%20for%20an%20event.%20Could%20we%20chat%3F"
+         target="_blank" rel="noopener noreferrer">
+        Let's Talk!
+      </a>
+    </div>
+
+    <!-- ═══ ABOUT ═══ -->
     <div class="about-strip">
       <h2>Made with love, baked to order 🤍</h2>
       <p>Every cup and every brownie is made fresh — no pre-stocked batches, no shortcuts. Just good ingredients and a whole lot of care.</p>
     </div>
 
-    <!-- Order / Contact -->
+    <!-- ═══ CONTACT ═══ -->
     <div class="order-section">
       <p class="section-label">Place your order</p>
       <h2>Get in touch</h2>
       <p class="order-note">Fresh to order &nbsp;·&nbsp; Typically 24–48 hrs notice</p>
-
       <div class="btn-group">
-
         <a class="btn btn-primary"
            href="https://wa.me/6587416283?text=Hi%20Gayathri!%20I%27d%20like%20to%20place%20an%20order%20from%20JustBakes%20%F0%9F%8D%B0%0A%0AMy%20Order%3A%0A-%20%0A%0APlease%20let%20me%20know%20availability%20and%20total.%20Thank%20you!"
            target="_blank" rel="noopener noreferrer">
           <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           WhatsApp
         </a>
-
-        <a class="btn btn-secondary"
-           href="https://ig.me/m/guruprasath3200"
-           target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-          Instagram DM
-        </a>
-
       </div>
     </div>
 
@@ -450,6 +398,53 @@
   <footer>
     <p>JustBakes <em>by Gayathri</em> &nbsp;·&nbsp; Home Bakery &nbsp;·&nbsp; Made with love 🤍</p>
   </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+      /* ── Dessert-cup pricing blocks ── */
+      const renderBlock = (id, tier) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        const rows = tier.options.map(o =>
+          `<div class="pricing-row">
+            <span class="pr-qty">${o.qty} cups</span>
+            <span class="pr-price">$${o.price}</span>
+          </div>`
+        ).join('');
+        el.innerHTML = `<div class="pricing-block">
+          <div class="pricing-heading">${tier.label} <span>${tier.sublabel}</span></div>
+          ${rows}
+        </div>`;
+      };
+      if (PRICING.dessertCups) {
+        renderBlock('cups-pricing-small', PRICING.dessertCups.small);
+        renderBlock('cups-pricing-large', PRICING.dessertCups.large);
+      }
+
+      /* ── Brownie prices ── */
+      const brEl = document.getElementById('brownie-prices');
+      if (brEl && PRICING.browniePacks) {
+        brEl.innerHTML = PRICING.browniePacks.options.map(o =>
+          `<div class="fp-item">
+            <span class="fp-qty">${o.qty} pcs</span>
+            <span class="fp-val">$${o.price}</span>
+          </div>`
+        ).join('');
+      }
+
+      /* ── Cupcake prices ── */
+      const ccEl = document.getElementById('cupcake-prices');
+      if (ccEl && PRICING.cupcakes) {
+        ccEl.innerHTML = PRICING.cupcakes.options.map(o =>
+          `<div class="fp-item">
+            <span class="fp-qty">${o.qty} pcs</span>
+            <span class="fp-val">$${o.price}</span>
+          </div>`
+        ).join('');
+      }
+    });
+  </script>
 
 </body>
 </html>
