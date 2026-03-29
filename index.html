@@ -14,7 +14,7 @@
       small:  { label: "100 ml", sublabel: "Small Cup", options: [{ qty: 3, price: 8 }, { qty: 6, price: 15 }, { qty: 12, price: 30 }] },
       large:  { label: "350 ml", sublabel: "Large Cup", options: [{ qty: 3, price: 13 }, { qty: 6, price: 23 }, { qty: 12, price: 44 }] }
     },
-    browniePacks: { options: [{ qty: 6, price: 16 }] },
+    browniePacks: { options: [{ qty: 1, price: 14 }, { qty: 2, price: 23 }] },
     cupcakes:     { options: [{ qty: 6, price: 15 }, { qty: 12, price: 25 }, { qty: 24, price: 50 }] }
   };
   </script>
@@ -426,7 +426,7 @@
       if (brEl && PRICING.browniePacks) {
         brEl.innerHTML = PRICING.browniePacks.options.map(o =>
           `<div class="fp-item">
-            <span class="fp-qty">${o.qty} pcs</span>
+            <span class="fp-qty">${o.qty === 1 ? '1 batch' : `${o.qty} batches`}</span>
             <span class="fp-val">$${o.price}</span>
           </div>`
         ).join('');
