@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>JustBakes by Gayathri — Menu Poster</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <script>
+  const PRICING = {
+    dessertCups: {
+      small: { label: "100 ml", sublabel: "Small Cup", options: [{ qty: 3, price: 8 }, { qty: 6, price: 15 }, { qty: 12, price: 30 }] },
+      large: { label: "350 ml", sublabel: "Large Cup", options: [{ qty: 3, price: 13 }, { qty: 6, price: 23 }, { qty: 12, price: 44 }] }
+    },
+    browniePacks: { options: [{ qty: 1, price: 14 }, { qty: 2, price: 23 }] },
+    cupcakes:     { options: [{ qty: 6, price: 15 }, { qty: 12, price: 25 }, { qty: 24, price: 50 }] }
+  };
+  </script>
+  <style>
+    @page { size: A5 portrait; margin: 8mm; }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --linen:      #faf4ec;
+      --biscuit:    #e8c9a0;
+      --terra:      #b35c3a;
+      --sage:       #7a9e7e;
+      --espresso:   #3b2a1a;
+      --text-mid:   #7a5c3e;
+      --text-light: #a88060;
+      --card-bg:    #f5ece0;
+      --border:     #dfc99a;
+    }
+
+    html { font-size: 18px; }
+    body {
+      background: var(--linen);
+      color: var(--espresso);
+      font-family: 'Lato', sans-serif;
+      width: 148mm;
+      margin: 0 auto;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ══════════════════════════════════════
+       HEADER — compact, no standalone badge
+    ══════════════════════════════════════ */
+    header {
+      text-align: center;
+      padding: 0.9rem 1.5rem 0.8rem;
+      border-bottom: 2px solid var(--border);
+    }
+    .brand-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; font-weight: 700;
+      color: var(--espresso); line-height: 1.05; letter-spacing: -0.01em;
+    }
+    .brand-by {
+      display: block; font-family: 'Playfair Display', serif;
+      font-size: 0.88rem; font-weight: 400; font-style: italic;
+      color: var(--terra); margin-top: 0.1rem;
+    }
+    .tagline {
+      margin-top: 0.45rem; font-weight: 700;
+      font-size: 0.53rem; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--text-light);
+    }
+
+    /* ══════════════════════════════════════
+       MAIN
+    ══════════════════════════════════════ */
+    main { padding: 0 0.85rem 1rem; }
+
+    /* ══════════════════════════════════════
+       SECTION HEADING
+    ══════════════════════════════════════ */
+    .section-header { margin: 1.1rem 0 0; }
+    .section-label {
+      font-weight: 700; font-size: 0.5rem;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--sage); margin-bottom: 0.12rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem; font-weight: 600; line-height: 1.1;
+    }
+    .section-note {
+      font-size: 0.58rem; font-weight: 300;
+      color: var(--text-mid); margin-top: 0.08rem;
+    }
+
+    /* ══════════════════════════════════════
+       2×2 CUP CARD GRID
+    ══════════════════════════════════════ */
+    .cup-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.38rem;
+      margin-top: 0.5rem;
+    }
+    .cup-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      display: flex; align-items: center; gap: 0.38rem;
+      padding: 0.35rem;
+      overflow: hidden;
+    }
+    .cup-card-img {
+      width: 40px; height: 40px; border-radius: 6px;
+      object-fit: cover; flex-shrink: 0;
+      border: 1px solid var(--border);
+    }
+    .cup-card-body { flex: 1; min-width: 0; }
+    .cup-card-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.7rem; font-weight: 600; line-height: 1.2;
+    }
+    .cup-card-desc {
+      font-size: 0.54rem; font-weight: 300;
+      color: var(--text-mid); margin-top: 0.04rem; line-height: 1.3;
+    }
+    .img-chocolate { filter: sepia(0.5) saturate(1.8) hue-rotate(-15deg) brightness(0.72); }
+
+    /* ══════════════════════════════════════
+       PRICING PAIR — side by side
+    ══════════════════════════════════════ */
+    .pricing-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.38rem;
+      margin-top: 0.42rem;
+    }
+    /* override the default margin-top that JS injects */
+    .pricing-pair .pricing-block { margin-top: 0; }
+
+    .pricing-block {
+      background: var(--card-bg); border-radius: 8px;
+      border: 1px solid var(--border); overflow: hidden;
+    }
+    .pricing-heading {
+      padding: 0.4rem 0.6rem;
+      background: var(--espresso); color: var(--linen);
+      font-size: 0.58rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+    }
+    .pricing-heading span {
+      font-weight: 300; opacity: 0.7;
+      margin-left: 0.2rem; letter-spacing: 0.04em; text-transform: none;
+    }
+    .pricing-row {
+      display: flex; align-items: center;
+      padding: 0.44rem 0.6rem;
+    }
+    .pricing-row + .pricing-row { border-top: 1px solid var(--border); }
+    .pr-qty { font-size: 0.72rem; font-weight: 300; color: var(--text-mid); flex: 1; }
+    .pr-price { font-size: 0.9rem; font-weight: 700; color: var(--terra); }
+
+    /* ══════════════════════════════════════
+       PRODUCT ROW — brownie + cupcakes side by side
+    ══════════════════════════════════════ */
+    .product-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+    .product-mini {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px; overflow: hidden;
+    }
+    /* image + overlay sit in a relative wrapper */
+    .product-mini-img-wrap { position: relative; }
+    .product-mini-img {
+      width: 100%; aspect-ratio: 3/2; object-fit: cover; display: block;
+    }
+    /* label + title float over the image on a dark gradient */
+    .product-mini-overlay {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 1.4rem 0.55rem 0.42rem;
+      background: linear-gradient(to bottom, transparent, rgba(20, 8, 2, 0.74));
+    }
+    .product-mini-label {
+      font-weight: 700; font-size: 0.46rem;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.78);
+    }
+    .product-mini-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.84rem; font-weight: 600;
+      color: #fff; margin-top: 0.06rem;
+    }
+    /* body holds only prices — no name, no description */
+    .product-mini-body { padding: 0.38rem 0.55rem 0.44rem; }
+    /* prices in a horizontal wrap */
+    .product-mini-prices {
+      display: flex; flex-wrap: wrap; gap: 0.14rem 0.42rem;
+    }
+    .pm-item { display: flex; align-items: baseline; gap: 0.14rem; }
+    .pm-qty { font-size: 0.57rem; font-weight: 300; color: var(--text-mid); }
+    .pm-val { font-size: 0.82rem; font-weight: 700; color: var(--terra); }
+
+    /* ══════════════════════════════════════
+       CONTACT STRIP
+    ══════════════════════════════════════ */
+    .poster-contact {
+      margin-top: 1.1rem; text-align: center;
+      padding: 0.75rem 1rem 0.8rem;
+      border-top: 2px solid var(--border);
+    }
+    .contact-order-line {
+      display: flex; align-items: center; justify-content: center; gap: 0.38rem;
+    }
+    .wa-icon { width: 15px; height: 15px; flex-shrink: 0; }
+    .contact-label {
+      font-weight: 700; font-size: 0.6rem;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--espresso);
+    }
+    .contact-number {
+      font-size: 0.88rem; font-weight: 700;
+      color: var(--terra); letter-spacing: 0.04em;
+    }
+    .contact-note {
+      margin-top: 0.28rem; font-size: 0.72rem; font-weight: 300;
+      color: var(--text-mid);
+    }
+    .halal-green { color: var(--sage); font-weight: 400; }
+
+    @media print {
+      body { background: #faf4ec; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand-name">
+      JustBakes
+      <span class="brand-by">by Gayathri</span>
+    </div>
+    <p class="tagline">🧁 &nbsp; Every cup, a little celebration &nbsp; 🧁</p>
+  </header>
+
+  <main>
+
+    <!-- ═══ DESSERT CUPS ═══ -->
+    <div class="section-header">
+      <p class="section-label">Single Serve</p>
+      <h2 class="section-title">Dessert Cups</h2>
+      <p class="section-note">Available in 100 ml &amp; 350 ml · All flavours same price</p>
+    </div>
+
+    <!-- 2×2 compact flavour grid -->
+    <div class="cup-grid">
+      <div class="cup-card">
+        <img class="cup-card-img" src="assets/dessert-cup-strawberry.jpg" alt="Strawberry Shortcake" />
+        <div class="cup-card-body">
+          <div class="cup-card-name">Strawberry Shortcake</div>
+          <div class="cup-card-desc">Vanilla cake, strawberries &amp; cream</div>
+        </div>
+      </div>
+      <div class="cup-card">
+        <img class="cup-card-img" src="assets/dessert-cup-blueberry.jpg" alt="Blueberry" />
+        <div class="cup-card-body">
+          <div class="cup-card-name">Blueberry</div>
+          <div class="cup-card-desc">Vanilla cake, blueberries &amp; cream</div>
+        </div>
+      </div>
+      <div class="cup-card">
+        <img class="cup-card-img" src="assets/dessert-cup-mixed-fruit.jpg" alt="Mixed Fruit" />
+        <div class="cup-card-body">
+          <div class="cup-card-name">Mixed Fruit</div>
+          <div class="cup-card-desc">Vanilla cake, seasonal fruit &amp; cream</div>
+        </div>
+      </div>
+      <div class="cup-card">
+        <img class="cup-card-img img-chocolate" src="assets/dessert-cup-strawberry.jpg" alt="Chocolate" />
+        <div class="cup-card-body">
+          <div class="cup-card-name">Chocolate</div>
+          <div class="cup-card-desc">Rich chocolate sponge &amp; frosting</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- pricing blocks: 100 ml | 350 ml side by side -->
+    <div class="pricing-pair">
+      <div id="cups-pricing-small"></div>
+      <div id="cups-pricing-large"></div>
+    </div>
+
+    <!-- ═══ BROWNIE PACKS + CUPCAKES side by side ═══ -->
+    <div class="product-row">
+
+      <div class="product-mini">
+        <div class="product-mini-img-wrap">
+          <img class="product-mini-img" src="assets/brownie-classic.jpg" alt="Classic Brownie" />
+          <div class="product-mini-overlay">
+            <p class="product-mini-label">Baked Fresh</p>
+            <p class="product-mini-title">Brownie Packs</p>
+          </div>
+        </div>
+        <div class="product-mini-body">
+          <div class="product-mini-prices" id="brownie-prices"></div>
+        </div>
+      </div>
+
+      <div class="product-mini">
+        <div class="product-mini-img-wrap">
+          <img class="product-mini-img" src="assets/cupcakes-vanilla.jpg" alt="Vanilla Cupcakes" />
+          <div class="product-mini-overlay">
+            <p class="product-mini-label">Party Favourite</p>
+            <p class="product-mini-title">Cupcakes</p>
+          </div>
+        </div>
+        <div class="product-mini-body">
+          <div class="product-mini-prices" id="cupcake-prices"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ═══ CONTACT ═══ -->
+    <div class="poster-contact">
+      <div class="contact-order-line">
+        <svg class="wa-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path fill="#25D366" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        <span class="contact-label">Order via WhatsApp</span>
+        <span class="contact-number">+65 9868 7824</span>
+      </div>
+      <p class="contact-note">No preservatives · <span class="halal-green">Halal-certified ingredients</span></p>
+    </div>
+
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+      /* ── Dessert-cup pricing blocks ── */
+      const renderBlock = (id, tier) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        const rows = tier.options.map(o =>
+          `<div class="pricing-row">
+            <span class="pr-qty">${o.qty} cups</span>
+            <span class="pr-price">$${o.price}</span>
+          </div>`
+        ).join('');
+        el.innerHTML = `<div class="pricing-block">
+          <div class="pricing-heading">${tier.label} <span>${tier.sublabel}</span></div>
+          ${rows}
+        </div>`;
+      };
+      if (PRICING.dessertCups) {
+        renderBlock('cups-pricing-small', PRICING.dessertCups.small);
+        renderBlock('cups-pricing-large', PRICING.dessertCups.large);
+      }
+
+      /* ── Brownie prices (horizontal inline) ── */
+      const brEl = document.getElementById('brownie-prices');
+      if (brEl && PRICING.browniePacks) {
+        brEl.innerHTML = PRICING.browniePacks.options.map(o =>
+          `<div class="pm-item">
+            <span class="pm-qty">${o.qty === 1 ? '1 batch' : `${o.qty} batches`}</span>
+            <span class="pm-val">$${o.price}</span>
+          </div>`
+        ).join('');
+      }
+
+      /* ── Cupcake prices (horizontal inline) ── */
+      const ccEl = document.getElementById('cupcake-prices');
+      if (ccEl && PRICING.cupcakes) {
+        ccEl.innerHTML = PRICING.cupcakes.options.map(o =>
+          `<div class="pm-item">
+            <span class="pm-qty">${o.qty} pcs</span>
+            <span class="pm-val">$${o.price}</span>
+          </div>`
+        ).join('');
+      }
+    });
+  </script>
+
+</body>
+</html>
